@@ -1,11 +1,11 @@
 
-import React, { useEffect } from "react";
+import React from "react";
 import { MessageSquare } from "lucide-react";
 
 const WhatsAppButton = () => {
   const handleWhatsAppClick = () => {
-    const eventId = generateEventId();
-    const clientInfo = getClientInfo();
+    const eventId = window.generateEventId ? window.generateEventId() : generateEventIdFallback();
+    const clientInfo = window.getClientInfo ? window.getClientInfo() : getClientInfoFallback();
     
     // Trigger dataLayer event
     window.dataLayer = window.dataLayer || [];
@@ -27,8 +27,8 @@ const WhatsAppButton = () => {
     });
 
     // GA4 event
-    if (typeof gtag === 'function') {
-      gtag('event', 'lead', {
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'lead', {
         event_category: 'Engagement',
         event_label: 'WhatsApp_Click',
         screen_resolution: clientInfo.screenResolution,
@@ -45,8 +45,8 @@ const WhatsAppButton = () => {
     }
 
     // Facebook Pixel events
-    if (typeof fbq === 'function') {
-      fbq('track', 'Lead', {
+    if (typeof window.fbq === 'function') {
+      window.fbq('track', 'Lead', {
         event_name: 'Lead',
         event_id: eventId,
         event_time: Math.floor(Date.now()/1000),
@@ -75,7 +75,7 @@ const WhatsAppButton = () => {
         }
       });
 
-      fbq('track', 'InitiateCheckout', {
+      window.fbq('track', 'InitiateCheckout', {
         content_type: 'lead',
         content_name: 'WhatsApp Lead',
         content_category: 'Gambling',
@@ -122,24 +122,16 @@ const WhatsAppButton = () => {
   );
 };
 
-// TypeScript declarations to avoid compilation errors
-declare global {
-  interface Window {
-    dataLayer: any[];
-    gtag: (...args: any[]) => void;
-    fbq: (...args: any[]) => void;
-  }
-}
-
-function generateEventId() { 
+// Fallback functions
+function generateEventIdFallback() { 
   return 'event_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now(); 
 }
 
-function getClientInfo() { 
+function getClientInfoFallback() { 
   try { 
     const ua = navigator.userAgent;
     const sr = window.screen.width + 'x' + window.screen.height;
-    const lang = navigator.language || navigator.userLanguage;
+    const lang = navigator.language;
     const tz = new Date().getTimezoneOffset() / 60;
     const ref = encodeURIComponent(document.referrer || '');
     const utm = new URLSearchParams(window.location.search);
@@ -155,7 +147,7 @@ function getClientInfo() {
       utm_campaign: utm.get('utm_campaign') || '', 
       utm_content: utm.get('utm_content') || '', 
       utm_term: utm.get('utm_term') || '',
-      external_id: hashString(navigator.userAgent+navigator.language+(new Date().getTimezoneOffset()/60))
+      external_id: hashStringFallback(navigator.userAgent+navigator.language+(new Date().getTimezoneOffset()/60))
     }; 
   } catch (e) {
     console.error("Error getting client info", e);
@@ -163,7 +155,7 @@ function getClientInfo() {
   }
 }
 
-function hashString(str: string) { 
+function hashStringFallback(str: string) { 
   let hash = 0; 
   if (str.length === 0) return hash.toString(); 
   for (let i = 0; i < str.length; i++) { 

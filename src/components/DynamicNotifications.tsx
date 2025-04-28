@@ -38,8 +38,10 @@ const DynamicNotifications = () => {
 
   return (
     <div key={key} className="notification z-40">
-      <Check className="h-4 w-4 text-pliim-green" />
-      <span className="text-white">{notification}</span>
+      <div className="bg-[#00B300] rounded-full p-1">
+        <Check className="h-3 w-3 text-white" />
+      </div>
+      <span className="text-white font-medium">{notification}</span>
     </div>
   );
 };

@@ -10,4 +10,21 @@ body {
   color: white;
   font-family: 'Montserrat', sans-serif;
   min-height: 100vh;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(0, 179, 0, 0.05) 0%, transparent 20%),
+    radial-gradient(circle at 90% 80%, rgba(255, 215, 0, 0.05) 0%, transparent 20%);
+}
+
+/* Animações adicionais */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }

@@ -5,8 +5,17 @@ import { ArrowRight } from "lucide-react";
 
 const Hero = () => {
   return (
-    <section className="pt-24 pb-16">
-      <div className="container mx-auto px-4 flex flex-col items-center">
+    <section className="pt-24 pb-16 relative overflow-hidden">
+      {/* Animated background particles */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute top-20 left-10 w-2 h-2 rounded-full bg-[#FFD700] animate-pulse opacity-60"></div>
+        <div className="absolute top-40 right-20 w-3 h-3 rounded-full bg-[#00B300] animate-pulse opacity-40"></div>
+        <div className="absolute bottom-20 left-1/4 w-2 h-2 rounded-full bg-[#FFD700] animate-pulse opacity-50"></div>
+        <div className="absolute top-1/2 right-1/3 w-1 h-1 rounded-full bg-[#FEFF0B] animate-pulse opacity-30"></div>
+        <div className="absolute bottom-40 right-10 w-2 h-2 rounded-full bg-[#00B300] animate-pulse opacity-50"></div>
+      </div>
+      
+      <div className="container mx-auto px-4 flex flex-col items-center relative z-10">
         <div className="w-full max-w-lg mx-auto animate-fade-in" style={{animationDelay: '0.2s'}}>
           <div className="relative overflow-hidden rounded-lg mb-6 group">
             <img 
@@ -16,6 +25,9 @@ const Hero = () => {
               loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+            <div className="absolute top-3 right-3 bg-[#FFD700] text-black px-2 py-1 rounded-md text-xs font-bold animate-pulse">
+              EXCLUSIVO
+            </div>
           </div>
           
           <h1 className="text-3xl md:text-4xl font-extrabold text-center mb-4 text-white animate-fade-in" style={{animationDelay: '0.4s'}}>

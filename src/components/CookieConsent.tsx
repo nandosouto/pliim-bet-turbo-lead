@@ -44,7 +44,7 @@ const CookieConsent = () => {
   if (!showConsent) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-black/90 backdrop-blur-md text-white p-4 z-50 border-t border-gray-700">
+    <div className="fixed bottom-0 left-0 right-0 bg-black/90 backdrop-blur-md text-white p-4 z-50 border-t border-[#FFD700]/20 animate-fade-in">
       <div className="container mx-auto">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="text-sm">
@@ -53,7 +53,7 @@ const CookieConsent = () => {
           <div className="flex gap-2">
             <button
               onClick={acceptCookies}
-              className="bg-pliim-green text-white px-4 py-2 rounded-md text-sm whitespace-nowrap"
+              className="bg-[#00B300] text-white px-4 py-2 rounded-md text-sm whitespace-nowrap hover:bg-[#009900] transition-colors"
             >
               Aceitar
             </button>
