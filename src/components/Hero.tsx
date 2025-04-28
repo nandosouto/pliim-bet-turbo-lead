@@ -3,16 +3,36 @@ import React from "react";
 import WhatsAppButton from "./WhatsAppButton";
 import { ArrowRight } from "lucide-react";
 
+// Array de partículas para o fundo animado
+const particles = Array.from({ length: 12 }).map((_, i) => ({
+  id: i,
+  x: Math.random() * 100,
+  y: Math.random() * 100,
+  size: Math.random() * 3 + 1,
+  color: i % 3 === 0 ? "#FFD700" : i % 3 === 1 ? "#00B300" : "#FEFF0B",
+  delay: i * 0.2
+}));
+
 const Hero = () => {
   return (
     <section className="pt-24 pb-16 relative overflow-hidden">
-      {/* Animated background particles */}
+      {/* Partículas animadas no fundo */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute top-20 left-10 w-2 h-2 rounded-full bg-[#FFD700] animate-pulse opacity-60"></div>
-        <div className="absolute top-40 right-20 w-3 h-3 rounded-full bg-[#00B300] animate-pulse opacity-40"></div>
-        <div className="absolute bottom-20 left-1/4 w-2 h-2 rounded-full bg-[#FFD700] animate-pulse opacity-50"></div>
-        <div className="absolute top-1/2 right-1/3 w-1 h-1 rounded-full bg-[#FEFF0B] animate-pulse opacity-30"></div>
-        <div className="absolute bottom-40 right-10 w-2 h-2 rounded-full bg-[#00B300] animate-pulse opacity-50"></div>
+        {particles.map(particle => (
+          <div 
+            key={particle.id}
+            className="absolute rounded-full animate-pulse opacity-60"
+            style={{
+              top: `${particle.y}%`,
+              left: `${particle.x}%`,
+              width: `${particle.size}px`,
+              height: `${particle.size}px`,
+              backgroundColor: particle.color,
+              animationDelay: `${particle.delay}s`,
+              animationDuration: `${4 + Math.random() * 3}s`
+            }}
+          />
+        ))}
       </div>
       
       <div className="container mx-auto px-4 flex flex-col items-center relative z-10">
@@ -23,9 +43,15 @@ const Hero = () => {
               alt="Pliim Bet VIP" 
               className="w-full h-auto transform transition-transform duration-700 group-hover:scale-105"
               loading="lazy"
+              width="320"
+              height="161"
+              onError={(e) => {
+                e.currentTarget.onerror = null;
+                e.currentTarget.src = "https://placehold.co/320x161/000000/FEFF0B?text=PLIIM+BET";
+              }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-            <div className="absolute top-3 right-3 bg-[#FFD700] text-black px-2 py-1 rounded-md text-xs font-bold animate-pulse">
+            <div className="absolute top-3 right-3 bg-[#FFD700] text-black px-3 py-1 rounded-md text-xs font-bold animate-scale-pulse">
               EXCLUSIVO
             </div>
           </div>

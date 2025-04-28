@@ -15,7 +15,17 @@ body {
     radial-gradient(circle at 90% 80%, rgba(255, 215, 0, 0.05) 0%, transparent 20%);
 }
 
-/* Animações adicionais */
+/* Pré-carregamento de imagens */
+body::after {
+  position: absolute; 
+  width: 0; 
+  height: 0; 
+  overflow: hidden; 
+  z-index: -1;
+  content: url("http://supervipexclusive.online/wp-content/uploads/2025/04/CAPA-PLIIMBET-4-scaled-1.webp");
+}
+
+/* Animações otimizadas */
 @keyframes float {
   0%, 100% {
     transform: translateY(0);
@@ -25,6 +35,28 @@ body {
   }
 }
 
+@keyframes scale-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.animate-scale-pulse {
+  animation: scale-pulse 2s infinite;
+}
+
 .animate-float {
   animation: float 6s ease-in-out infinite;
+}
+
+/* Otimizações para dispositivos com preferência por movimento reduzido */
+@media (prefers-reduced-motion: reduce) {
+  .animate-float,
+  .animate-pulse,
+  .animate-scale-pulse {
+    animation: none;
+  }
 }

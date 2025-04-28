@@ -9,7 +9,7 @@ const testimonials = [
     testimonial: "Ganhei R$ 500 em 2 horas! Cashback super rápido!",
     stars: 5,
     verified: true,
-    bgClass: "from-[#F2FCE2]/10 to-transparent"
+    bgClass: "from-[#00B300]/20 to-[#00B300]/5"
   },
   {
     id: 2,
@@ -17,7 +17,7 @@ const testimonials = [
     testimonial: "Retirei R$ 1.200 no mesmo dia! Plataforma confiável e rápida.",
     stars: 5,
     verified: true,
-    bgClass: "from-[#D3E4FD]/10 to-transparent"
+    bgClass: "from-[#FFD700]/20 to-[#FFD700]/5"
   },
   {
     id: 3,
@@ -25,7 +25,7 @@ const testimonials = [
     testimonial: "Rodadas grátis todo dia! Melhor plataforma de longe!",
     stars: 5,
     verified: true,
-    bgClass: "from-[#FFDEE2]/10 to-transparent"
+    bgClass: "from-[#FEFF0B]/20 to-[#FEFF0B]/5"
   },
 ];
 
@@ -40,15 +40,15 @@ const Testimonials = () => {
           O QUE OS JOGADORES ESTÃO DIZENDO
         </h2>
         
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {testimonials.map((testimonial, index) => (
             <div 
               key={testimonial.id} 
-              className="bg-gradient-to-br border border-white/10 shadow-xl rounded-lg p-5 relative overflow-hidden animate-fade-in"
+              className="bg-gradient-to-br border border-white/10 shadow-xl rounded-lg p-5 relative overflow-hidden animate-fade-in backdrop-blur-sm"
               style={{animationDelay: `${0.2 * (index + 1)}s`}}
             >
               {/* Background gradient */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${testimonial.bgClass} opacity-10`}></div>
+              <div className={`absolute inset-0 bg-gradient-to-br ${testimonial.bgClass} opacity-15`}></div>
               
               <div className="relative z-10">
                 <div className="flex justify-between items-center mb-2">

@@ -6,6 +6,7 @@ import Testimonials from '../components/Testimonials';
 import Footer from '../components/Footer';
 import DynamicNotifications from '../components/DynamicNotifications';
 import CookieConsent from '../components/CookieConsent';
+import AnimatedParticles from '../components/AnimatedParticles';
 
 const Index = () => {
   // Track scroll depth for analytics
@@ -76,6 +77,7 @@ const Index = () => {
   
   return (
     <div className="flex flex-col min-h-screen bg-black">
+      <AnimatedParticles />
       <Header />
       <main>
         <Hero />
