@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,7 +62,13 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+        pliim: {
+          black: '#000000',
+          gold: '#FFD700',
+          green: '#00B300',
+          yellow: '#FEFF0B',
+        },
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -84,12 +91,78 @@ export default {
 					to: {
 						height: '0'
 					}
-				}
+				},
+        'fade-in': {
+          '0%': { 
+            opacity: '0',
+            transform: 'translateY(10px)'
+          },
+          '100%': { 
+            opacity: '1',
+            transform: 'translateY(0)'
+          }
+        },
+        'slide-in-bottom': {
+          '0%': {
+            transform: 'translateY(20px)',
+            opacity: '0'
+          },
+          '100%': {
+            transform: 'translateY(0)',
+            opacity: '1'
+          }
+        },
+        'scale-pulse': {
+          '0%, 100%': {
+            transform: 'scale(1)',
+          },
+          '50%': {
+            transform: 'scale(1.05)',
+          }
+        },
+        'float': {
+          '0%, 100%': {
+            transform: 'translateY(0)',
+          },
+          '50%': {
+            transform: 'translateY(-5px)',
+          }
+        },
+        'notification-in': {
+          '0%': {
+            transform: 'translateX(-20px)',
+            opacity: '0'
+          },
+          '10%': {
+            transform: 'translateX(0)',
+            opacity: '1'
+          },
+          '90%': {
+            transform: 'translateX(0)',
+            opacity: '1'
+          },
+          '100%': {
+            transform: 'translateX(-20px)',
+            opacity: '0'
+          }
+        }
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
-			}
+				'accordion-up': 'accordion-up 0.2s ease-out',
+        'fade-in': 'fade-in 0.5s ease-out forwards',
+        'slide-in-bottom': 'slide-in-bottom 0.5s ease-out forwards',
+        'scale-pulse': 'scale-pulse 2s infinite',
+        'float': 'float 3s ease-in-out infinite',
+        'notification-in': 'notification-in 5s ease-in-out forwards'
+			},
+      fontFamily: {
+        'montserrat': ['Montserrat', 'sans-serif'],
+      },
+      backgroundImage: {
+        'yellow-gradient': 'linear-gradient(90deg, #FEFF0B, #F7FF00)',
+        'gold-gradient': 'linear-gradient(135deg, #FFD700, #FFC107)',
+      }
 		}
 	},
 	plugins: [require("tailwindcss-animate")],
