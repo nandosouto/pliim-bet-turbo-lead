@@ -12,7 +12,7 @@ const WhatsAppButton = () => {
       try { 
         const ua = navigator.userAgent;
         const sr = window.screen.width + 'x' + window.screen.height;
-        const lang = navigator.language || navigator.userLanguage;
+        const lang = navigator.language; // Corrigido - removido userLanguage
         const tz = new Date().getTimezoneOffset() / 60;
         const ref = encodeURIComponent(document.referrer || '');
         const utm = new URLSearchParams(window.location.search);
